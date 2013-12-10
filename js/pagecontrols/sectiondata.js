@@ -1,8 +1,11 @@
 // License: (MIT) Copyright (C) 2013 Scott Gay
+// *** replaced underscore templating with dust templating
 define([
         "js/pagecontrols/base.js",
 	"js/libraries/jquery.min.js",
-        "js/libraries/underscore-min.js",
+//        "js/libraries/underscore-min.js",
+	"js/libraries/dust-core.min.js",
+	"dusttemplates/sectiondata.js",
 	"js/subpagecontrols/blue.js",
         "js/subpagecontrols/yellow.js",
         "js/subpagecontrols/red.js",
@@ -22,14 +25,17 @@ define([
 	underpin.pagecontrols.sectiondata.prototype.load = function(){
 		var _this = this;
                 this.getContainer();
-                this.require_template('data-template');
+//                this.require_template('data-template');
 
                 var request = {};
                 request.action = "find";
                 request.collection = "info";
                 request.callback = function(data){
-                        var template = _.template($('#data-template').html(), {mydata: data.data});
-                        _this.container.html(template);
+//                        var template = _.template($('#data-template').html(), {mydata: data.data});
+//                        _this.container.html(template);
+			dust.render('sectiondata.tl', data, function(err, out){
+				_this.container.html(out);
+			});
                 };
                 request.failcallback = function(data){
                         $('<div>', {'class' : 'grid_16 error'}).appendTo(_this.container).html('An error occurred');
