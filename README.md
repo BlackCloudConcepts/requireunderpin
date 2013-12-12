@@ -7,7 +7,7 @@ RequireUnderpin is an modification of the Underpin Framework (https://github.com
 
 Modifications Include:
 - Require JS is added along with a more native javascript class implementation.  As part of this the lowpro dependency is removed.
-- DustJS is introduced as a templating option with the advantage of having templates which can be precompiled and cached.  Probably move the whole project in this direction in the future.
+- DustJS is introduced as a templating option with the advantage of having templates which can be precompiled and cached.
 
 See Underpin project for a full explaination of the purpose of the framework.
 
@@ -23,4 +23,9 @@ Demo:
 GitHub:
 - https://github.com/BlackCloudConcepts/requireunderpin
 
+Compiling Dust Templates with NodeJS: 
+Install node module
+- npm install -g dustjs-linkedin
+Usage
+- dustc input_file.tl output_file.js
 
