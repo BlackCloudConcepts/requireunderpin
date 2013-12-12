@@ -22,34 +22,37 @@ requirejs.config({
 });
 
 require([
+	//"js/libraries/domReady.js",
 	"js/libraries/jquery.min.js",
 	"js/controller.js"
 ], function(){
-	new underpin.controller({
-                'divHeader'     : $('#header'),
-                'divMain'       : $('#main'),
-                'divFooter'     : $('#footer')
-        });
+//	domReady(function(doc){
+		new underpin.controller({
+			'divHeader'     : $('#header'),
+			'divMain'       : $('#main'),
+			'divFooter'     : $('#footer')
+		});
 
-        // define outline button click actions
-        $('#pagecontroloverlay').bind('click', function(){
-                if ($('#parentcontainer').hasClass('pagecontroloverlay')){
-                        $('#parentcontainer').removeClass('pagecontroloverlay');
-                        $('#pagecontroloverlay').html('Show Page Controls Outline');
-                }
-                else{
-                        $('#parentcontainer').addClass('pagecontroloverlay');
-                        $('#pagecontroloverlay').html('Hide Page Controls Outline');
-                }
-        });
-        $('#subpagecontroloverlay').bind('click', function(){
-                if ($('#parentcontainer').hasClass('subpagecontroloverlay')){
-                        $('#parentcontainer').removeClass('subpagecontroloverlay');
-                        $('#subpagecontroloverlay').html('Show Subpage Controls Outline');
-                }
-                else{
-                        $('#parentcontainer').addClass('subpagecontroloverlay');
-                        $('#subpagecontroloverlay').html('Hide Subpage Controls Outline');
-                }
-        });
+		// define outline button click actions
+		$('#pagecontroloverlay').bind('click', function(){
+			if ($('#parentcontainer').hasClass('pagecontroloverlay')){
+				$('#parentcontainer').removeClass('pagecontroloverlay');
+				$('#pagecontroloverlay').html('Show Page Controls Outline');
+			}
+			else{
+				$('#parentcontainer').addClass('pagecontroloverlay');
+				$('#pagecontroloverlay').html('Hide Page Controls Outline');
+			}
+		});
+		$('#subpagecontroloverlay').bind('click', function(){
+			if ($('#parentcontainer').hasClass('subpagecontroloverlay')){
+				$('#parentcontainer').removeClass('subpagecontroloverlay');
+				$('#subpagecontroloverlay').html('Show Subpage Controls Outline');
+			}
+			else{
+				$('#parentcontainer').addClass('subpagecontroloverlay');
+				$('#subpagecontroloverlay').html('Hide Subpage Controls Outline');
+			}
+		});
+//	});
 });

@@ -2,7 +2,8 @@
 define([
 	"js/pagecontrols/base.js",
 	"js/libraries/jquery.min.js",
-	"js/libraries/underscore-min.js"
+//	"js/libraries/underscore-min.js"
+	"js/libraries/dust-core.min.js",
 ], function(Base){
 	underpin.pagecontrols.header = function(parameters){
 		Base.call(this);
@@ -17,10 +18,15 @@ define([
 	underpin.pagecontrols.header.prototype.load = function(){
 		var _this = this;
                 this.getContainer();
-                this.require_template('header-template');
+//                this.require_template('header-template');
 
-                var template = _.template($('#header-template').html());
-                this.container.html(template);
+//                var template = _.template($('#header-template').html());
+//                this.container.html(template);
+
+		this.require_template('header-tpl');
+		dust.render('header-tpl.tl', {}, function(err, out){
+                        _this.container.html(out);
+                });
 
                 $('#mainlink').bind('click', function(){ _this.parameters.switchMain('main'); });
                 $('#sectiononelink').bind('click', function(){ _this.parameters.switchMain('sectionone'); });

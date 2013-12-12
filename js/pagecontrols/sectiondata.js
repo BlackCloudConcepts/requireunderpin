@@ -5,7 +5,6 @@ define([
 	"js/libraries/jquery.min.js",
 //        "js/libraries/underscore-min.js",
 	"js/libraries/dust-core.min.js",
-	"dusttemplates/sectiondata.js",
 	"js/subpagecontrols/blue.js",
         "js/subpagecontrols/yellow.js",
         "js/subpagecontrols/red.js",
@@ -26,6 +25,7 @@ define([
 		var _this = this;
                 this.getContainer();
 //                this.require_template('data-template');
+		this.require_template('data-tpl');
 
                 var request = {};
                 request.action = "find";
@@ -33,7 +33,8 @@ define([
                 request.callback = function(data){
 //                        var template = _.template($('#data-template').html(), {mydata: data.data});
 //                        _this.container.html(template);
-			dust.render('sectiondata.tl', data, function(err, out){
+
+			dust.render('data-tpl.tl', data, function(err, out){
 				_this.container.html(out);
 			});
                 };

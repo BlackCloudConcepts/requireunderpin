@@ -1,0 +1,1 @@
+(function(){dust.register("orange-tpl.tl",body_0);function body_0(chk,ctx){return chk.write("<div class=\"grid_5 orange subpagecontrolhighlight\">&nbsp;</div>");}return body_0;})();

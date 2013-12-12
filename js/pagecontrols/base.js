@@ -1,6 +1,7 @@
 // License: (MIT) Copyright (C) 2013 Scott Gay
 define([
 	"js/base.js",
+	"js/libraries/dust-core.min.js",
 	"js/libraries/jquery.min.js"
 ], function(Base){
 	underpin.pagecontrols.base = function(parameters){

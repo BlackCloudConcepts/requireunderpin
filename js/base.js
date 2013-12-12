@@ -53,7 +53,8 @@ define([
 		var randomnumber=Math.floor(Math.random()*10000);
                 return randomnumber;
 	}	
-
+/*
+ * USED WITH UNDERSCORE TEMPLATING TO LOAD THE TEMPLATES AS NEED
 	underpin.base.prototype.require_template = function(templateName){
 		var template = $('#template_' + templateName);
 		if (template.length === 0) {
@@ -74,6 +75,25 @@ define([
 			$('head').append('<script id="'+ templateName + '" type="text/template">' + tmpl_string + '<\/script>');
 		}
 	}
+*/
+
+	// USED WITH DUST TEMPLATING
+	underpin.base.prototype.require_template = function(templateName){
+		var template = templateName;
+		var tmpl_dir = '/dusttemplates';
+		var tmpl_url = tmpl_dir + '/' + templateName + '.js';
+		var tmpl_string = '';
+		$.ajax({
+		    url: tmpl_url,
+		    method: 'GET',
+		    async: false,
+		    contentType: 'text',
+		    success: function (data) {
+			tmpl_string = data;
+		    }
+		});
+
+        }	
 
 	return underpin.base;
 });

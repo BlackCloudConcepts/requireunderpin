@@ -2,7 +2,8 @@
 define([
         "js/pagecontrols/base.js",
 	"js/libraries/jquery.min.js",
-        "js/libraries/underscore-min.js",
+//        "js/libraries/underscore-min.js",
+	"js/libraries/dust-core.min.js",
 	"js/subpagecontrols/blue.js",
         "js/subpagecontrols/yellow.js",
         "js/subpagecontrols/red.js",
@@ -20,11 +21,17 @@ define([
 
 	underpin.pagecontrols.info.prototype = Object.create(Base.prototype);
 	underpin.pagecontrols.info.prototype.load = function(){
+		var _this = this;
 		this.getContainer();
-                this.require_template('info-template');
+//                this.require_template('info-template');
 
-                var template = _.template($('#info-template').html());
-                this.container.html(template);
+//                var template = _.template($('#info-template').html());
+//                this.container.html(template);
+
+		this.require_template('info-tpl');
+		dust.render('info-tpl.tl', {}, function(err, out){
+                        _this.container.html(out);
+                });
 	}
 
 	underpin.pagecontrols.info.prototype.unload = function(){
