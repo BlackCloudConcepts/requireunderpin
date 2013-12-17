@@ -4,7 +4,7 @@
 <h3 class="grid_16">
 	License: (MIT) <br>© 2013 Scott Gay
 </h3>
-<a target="_blank" href="https://github.com/BlackCloudConcepts/underpin" class="grid_16">
+<a target="_blank" href="https://github.com/BlackCloudConcepts/requireunderpin" class="grid_16">
 	RequireUnderpin Javascript Structured Framework @ GitHub
 </a>
 <div style="height:10px;width:10px;"></div>
