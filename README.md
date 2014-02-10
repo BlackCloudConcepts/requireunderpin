@@ -8,6 +8,7 @@ RequireUnderpin is an modification of the Underpin Framework (https://github.com
 Modifications Include:
 - Require JS is added along with a more native javascript class implementation.  As part of this the lowpro dependency is removed.
 - DustJS is introduced as a templating option with the advantage of having templates which can be precompiled and cached.
+- Data models to further isolate data from controls and views.  Models also allow for data caching.
 
 See Underpin project for a full explaination of the purpose of the framework.
 
@@ -18,7 +19,7 @@ Requires:
 - 960 grid
 
 Demo:
-- http://requireunderpin.blackcloudconcepts.com/#sectionmain
+- http://requireunderpin.blackcloudconcepts.com/
 
 GitHub:
 - https://github.com/BlackCloudConcepts/requireunderpin
