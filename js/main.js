@@ -1,5 +1,6 @@
 if (underpin == null){
 	var underpin = {
+		'models' : {},
 		'pagecontrols' : {},
 		'subpagecontrols' : {}
 	};

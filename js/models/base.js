@@ -1,17 +1,15 @@
 // License: (MIT) Copyright (C) 2013 Scott Gay
 define([
-	"js/libraries/jquery.min.js"
+        "js/libraries/jquery.min.js"
 ], function(){
-	underpin.base = function(parameters){
-		this.init = function(){
-			this.parameters = parameters;
-		}
-		this.init();
-	}
+        underpin.models.base = function(parameters){
+                this.init = function(){
+                        this.parameters = parameters;
+                }
+                this.init();
+        }
 
-	// note : this is a duplication of sendRequest which also exists in models/base.
-	// - it is being left here in the event that you wish to call api directly outside of a model
-	underpin.base.prototype.sendRequest = function(request, loadingContainer){
+	underpin.models.base.prototype.sendRequest = function(request, loadingContainer){
 		// the structure of this api call can obviously change based on your needs.
                 // - action and collection might change to apiName and method for example
                 // - change your apiURL
@@ -28,7 +26,6 @@ define([
                 var failcallback = request.failcallback;
 
                 var apiURL = "http://96.126.120.64:8126";
-
                 $.ajax({
                         type: "POST",
                         url: apiURL+"?random=" + this.getRandomNumber(),
@@ -51,54 +48,10 @@ define([
                 });	
 	}
 
-	underpin.base.prototype.getRandomNumber = function(){
+	underpin.models.base.prototype.getRandomNumber = function(){
 		var randomnumber=Math.floor(Math.random()*10000);
                 return randomnumber;
 	}	
 
-/*
- * USED WITH UNDERSCORE TEMPLATING TO LOAD THE TEMPLATES AS NEED
-	underpin.base.prototype.require_template = function(templateName){
-		var template = $('#template_' + templateName);
-		if (template.length === 0) {
-			var tmpl_dir = '/templates';
-			var tmpl_url = tmpl_dir + '/' + templateName + '.html';
-			var tmpl_string = '';
-
-			$.ajax({
-			    url: tmpl_url,
-			    method: 'GET',
-			    async: false,
-			    contentType: 'text',
-			    success: function (data) {
-				tmpl_string = data;
-			    }
-			});
-
-			$('head').append('<script id="'+ templateName + '" type="text/template">' + tmpl_string + '<\/script>');
-		}
-	}
-*/
-
-	// USED WITH DUST TEMPLATING
-	underpin.base.prototype.require_template = function(templateName){
-		var template = templateName;
-		var tmpl_dir = '/dusttemplates';
-		var tmpl_url = tmpl_dir + '/' + templateName + '.js';
-		var tmpl_string = '';
-		$.ajax({
-		    url: tmpl_url,
-		    method: 'GET',
-		    async: false,
-		    contentType: 'text',
-		    success: function (data) {
-			tmpl_string = data;
-		    }
-		});
-
-        }	
-
-	return underpin.base;
+	return underpin.models.base;
 });
-
-

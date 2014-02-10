@@ -5,6 +5,7 @@ define([
 	"js/libraries/jquery.min.js",
 //        "js/libraries/underscore-min.js",
 	"js/libraries/dust-core.min.js",
+	"js/models/info.js",
 	"js/subpagecontrols/blue.js",
         "js/subpagecontrols/yellow.js",
         "js/subpagecontrols/red.js",
@@ -16,12 +17,30 @@ define([
 		this.init = function(){
 			this.parameters = parameters;
 	                this.parameters.container.addClass('pagecontrolhighlight');
+			this.infoModel = new underpin.models.info({
+				'container' : this.container,
+				'dataTTL' : 10
+			});
 		}
 		this.init();
 	}
 
 	underpin.pagecontrols.sectiondata.prototype = Object.create(Base.prototype);
 	underpin.pagecontrols.sectiondata.prototype.load = function(){
+
+		// WITH MODELS
+		var _this = this;
+		this.getContainer();
+		this.require_template('data-tpl');
+		infoPromise = this.infoModel.fetch();
+		infoPromise.done(function(data){
+			dust.render('data-tpl.tl', data, function(err, out){
+                                _this.container.html(out);
+                        });
+		});
+
+/*
+		// WITHOUT MODELS
 		var _this = this;
                 this.getContainer();
 //                this.require_template('data-template');
@@ -43,11 +62,12 @@ define([
                         $('<div>', {'class' : 'grid_16 error'}).appendTo(_this.container).html(' - '+data.e1);
                 };
                 this.sendRequest(request, this.container);
-	}
+*/
+	};
 
 	underpin.pagecontrols.sectiondata.prototype.unload = function(){
 		this.destroyControl();
-	}
+	};
 
 	return underpin.pagecontrols.sectiondata;
 });
