@@ -32,39 +32,27 @@ define([
 		var deferredObj = $.Deferred();
 		var modelName = 'modelInfo';
 
-		// validate if modelData exists and is within dataTTL		
-		this.modelData = this.checkModelStorage(this.modelData);
-		// validate if localStorage is available in browser, exists, and is within dataTTL	
-		var useLocalStorage = this.checkLocalStorage(modelName);
+		this.modelData = this.getModelStorage(this.modelData);
+		this.localData = this.getLocalStorage(modelName);
 		
 		if (this.modelData != undefined){
-			// return stored data
 //			console.log('use model data'); 
 			deferredObj.resolve(this.modelData.data);
-		} else if (useLocalStorage == true){
-			// return localStorage data
+		} else if (this.localData != undefined){
 //			console.log('use localStorage data');
-			this.modelData = JSON.parse(localStorage.getItem(modelName));
-			deferredObj.resolve(JSON.parse(localStorage.getItem(modelName)).data);
+			this.modelData = this.localData;
+			deferredObj.resolve(this.localData.data);
 		} else {
 //			console.log('get new data');
-			// get new data
 			var request = {};
 			request.action = "find";
 			request.collection = "info";
 			request.callback = function(data){
-				// store in model
-				_this.modelData = {};
-				_this.modelData.time = new Date().getTime();
-				_this.modelData.data = data;
-				// store in browser
-				if(typeof(Storage)!=="undefined"){
-					localStorage.setItem(modelName, JSON.stringify(_this.modelData));
-				}
+				_this.setModelStorage(data);
+				_this.setLocalStorage(modelName, data)
 				deferredObj.resolve(data);
 			};
 			request.failcallback = function(data){
-				// handle error
 				deferredObj.reject(data);
 			};
 			this.sendRequest(request, this.container);

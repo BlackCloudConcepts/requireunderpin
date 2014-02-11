@@ -3,16 +3,11 @@ define([
         "js/libraries/jquery.min.js"
 ], function(){
         underpin.models.base = function(parameters){
-/*
-                this.init = function(){
-                        this.parameters = parameters;
-                }
-                this.init();
-*/
+		// define constructor if necessary
         };
 
-	// validate if modelData exists and is within dataTTL
-	underpin.models.base.prototype.checkModelStorage = function(modelStorageData){
+	// validate and return if modelData exists and is within dataTTL
+	underpin.models.base.prototype.getModelStorage = function(modelStorageData){
 		if (modelStorageData != undefined){
 			var currTime = new Date().getTime();
                         if ((currTime - modelStorageData.time) > (this.parameters.dataTTL*1000))
@@ -21,18 +16,39 @@ define([
 		return modelStorageData;
 	};
 
-	// validate if localStorage is available in browser, exists, and is within dataTTL
-	underpin.models.base.prototype.checkLocalStorage = function(modelName){
-		var local = false;
+	// sets model data
+	underpin.models.base.prototype.setModelStorage = function(modelStorageData){
+		this.modelData = {};
+                this.modelData.time = new Date().getTime();
+                this.modelData.data = modelStorageData;
+	};
+
+	// validate and return if localStorage is available in browser, exists, and is within dataTTL
+	underpin.models.base.prototype.getLocalStorage = function(modelName){
+		var localStorageData = undefined;
                 if(typeof(Storage)!=="undefined"){ // check for browser support
                         if (localStorage.getItem(modelName) != undefined){ // check if model has been stored before
                                 // check if data is still in TTL
 				var currTime = new Date().getTime();
-                                if ((currTime - JSON.parse(localStorage.getItem(modelName)).time) < (this.parameters.dataTTL*1000))
-                                        local = true;
+				var lsd = JSON.parse(localStorage.getItem(modelName));
+                                if ((currTime - lsd.time) > (this.parameters.dataTTL*1000)){
+                                        localStorageData = undefined;
+				} else {
+					localStorageData = lsd;
+				}
                         }
                 }
-		return local;
+		return localStorageData;
+	};
+
+	// sets localStorage value if availabel in browser
+	underpin.models.base.prototype.setLocalStorage = function(modelName, localStorageData){
+		if(typeof(Storage)!=="undefined"){
+			var lsd = {};
+			lsd.data = localStorageData;
+			lsd.time = new Date().getTime();
+			localStorage.setItem(modelName, JSON.stringify(lsd));
+		}
 	};
 
 	underpin.models.base.prototype.sendRequest = function(request, loadingContainer){
