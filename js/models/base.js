@@ -3,11 +3,37 @@ define([
         "js/libraries/jquery.min.js"
 ], function(){
         underpin.models.base = function(parameters){
+/*
                 this.init = function(){
                         this.parameters = parameters;
                 }
                 this.init();
-        }
+*/
+        };
+
+	// validate if modelData exists and is within dataTTL
+	underpin.models.base.prototype.checkModelStorage = function(modelStorageData){
+		if (modelStorageData != undefined){
+			var currTime = new Date().getTime();
+                        if ((currTime - modelStorageData.time) > (this.parameters.dataTTL*1000))
+                                modelStorageData = undefined;
+                }
+		return modelStorageData;
+	};
+
+	// validate if localStorage is available in browser, exists, and is within dataTTL
+	underpin.models.base.prototype.checkLocalStorage = function(modelName){
+		var local = false;
+                if(typeof(Storage)!=="undefined"){ // check for browser support
+                        if (localStorage.getItem(modelName) != undefined){ // check if model has been stored before
+                                // check if data is still in TTL
+				var currTime = new Date().getTime();
+                                if ((currTime - JSON.parse(localStorage.getItem(modelName)).time) < (this.parameters.dataTTL*1000))
+                                        local = true;
+                        }
+                }
+		return local;
+	};
 
 	underpin.models.base.prototype.sendRequest = function(request, loadingContainer){
 		// the structure of this api call can obviously change based on your needs.
