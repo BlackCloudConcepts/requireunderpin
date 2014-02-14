@@ -19,7 +19,7 @@ Subpage Controls are the sections that exist within a Page Control. For example 
 
 Models are used in the Data Access Example page as a way of isolating the data from the controls.  The models are also setup to save state on a TTL both within the model and also using the browsers HTML5 localStorage when available.  Data requests can also still be made from the controls directly however models should be used whenever possible and certainly for commonly used data requests.  
 
-The building and layout options are aided by the use of the 960 grid system. In this case the page is divided into 16 sections horizontally, each sections being 40 pixels wide with a 20 pixel gutter separating each section. Read more about it to find out its advanced uses, but know that it makes the layout and dimensional uniformity between all controls very easy.
+The building and layout options are aided by the use of the Bootstrap grid system. I decided to modify Bootstrap to use 24 columns vs the default of 12.  Read more about it to find out its advanced uses, but know that it makes the layout and dimensional uniformity between all controls very easy.  Bootstrap 3 has the added advantage of being responsive by default allowing for customizable views on phone, tablet, or desktop.
 
 At the end of the day, RequireUnderpin makes it quick to get started and easy to scale in more advanced features later. Enjoy!
 
@@ -28,7 +28,7 @@ Requires:
 - require.js
 - backbone.js
 - underscore.js / dustjs
-- 960 grid
+- bootstrap
 
 Demo:
 - http://requireunderpin.blackcloudconcepts.com/
@@ -43,4 +43,14 @@ Install node module
 
 Usage
 - dustc input_file.tl output_file.js
+
+Bootstrap
+- To modify the included css ...
+- Download Source http://getbootstrap.com/getting-started/#download
+- npm install (in directory, gets dependencies installed)
+- gem install jekyll
+- modify code (for example change something in valiables.less)
+- grunt
+- get your new file out of the dist folder
+
 

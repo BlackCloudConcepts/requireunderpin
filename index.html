@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
 	<title>RequireUnderpin Javascript Structured Framework</title>
 
         <!-- EXTRA REQUIRED FILES -->
         <!-- req all controls -->
-	<link rel="stylesheet" href="/css/libraries/960.css" />
+	<link rel="stylesheet" href="/css/libraries/bootstrap.min.css" />
+	
 
         <!-- UNDERPIN FILES -->
 	<script data-main="js/main.js" src="js/libraries/require.js"></script>
@@ -13,13 +18,15 @@
 
 </head>
 <body>
-	<div id="parentcontainer" class="container_16 parentcontainer">
-		<div id="pagecontroloverlay" class="grid_5 overlaybutton">Show Page Controls Outline</div>
-		<div class="grid_6">&nbsp;</div>
-		<div id="subpagecontroloverlay" class="grid_5 overlaybutton">Show Subpage Controls Outline</div>
-		<div id="header" class="container_16"></div>
-		<div id="main" class="container_16"></div>
-		<div id="footer" class="container_16"></div>
+	<div id="parentcontainer" class="container parentcontainer">
+		<div class="row">
+			<div id="pagecontroloverlay" class="col-md-7 col-md-offset-1 overlaybutton">Show Page Controls Outline</div>
+			<div class="col-md-8">&nbsp;</div>
+			<div id="subpagecontroloverlay" class="col-md-7 overlaybutton">Show Subpage Controls Outline</div>
+		</div>
+		<div id="header" class="row"></div>
+		<div id="main" class="row"></div>
+		<div id="footer" class="row"></div>
 	</div>
 </body>
 </html>

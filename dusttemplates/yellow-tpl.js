@@ -1,1 +1,1 @@
-(function(){dust.register("yellow-tpl.tl",body_0);function body_0(chk,ctx){return chk.write("<div class=\"grid_6 yellow subpagecontrolhighlight\">&nbsp;</div>");}return body_0;})();
+(function(){dust.register("yellow-tpl.tl",body_0);function body_0(chk,ctx){return chk.write("<div class=\"col-md-8\"><div class=\"row\"><div class=\"col-md-22 col-md-offset-1 yellow subpagecontrolhighlight\">&nbsp;</div></div></div>");}return body_0;})();

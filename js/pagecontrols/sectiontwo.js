@@ -21,11 +21,11 @@ define([
 	underpin.pagecontrols.sectiontwo.prototype = Object.create(Base.prototype);
 	underpin.pagecontrols.sectiontwo.prototype.load = function(){
 		this.getContainer();
-                $('<div>', {'class' : 'grid_4'}).appendTo(this.container).html('&nbsp;');
+                $('<div>', {'class' : 'col-md-6'}).appendTo(this.container).html('&nbsp;');
                 new underpin.subpagecontrols.blue({
                         'container' : this.container
                 }).load();
-                $('<div>', {'class' : 'grid_4'}).appendTo(this.container).html('&nbsp;');
+                $('<div>', {'class' : 'col-md-6'}).appendTo(this.container).html('&nbsp;');
 
                 new underpin.subpagecontrols.red({
                         'container' : this.container
@@ -37,11 +37,11 @@ define([
                         'container' : this.container
                 }).load();
 
-                $('<div>', {'class' : 'grid_4'}).appendTo(this.container).html('&nbsp;');
+                $('<div>', {'class' : 'col-md-6'}).appendTo(this.container).html('&nbsp;');
                 new underpin.subpagecontrols.green({
                         'container' : this.container
                 }).load();
-                $('<div>', {'class' : 'grid_4'}).appendTo(this.container).html('&nbsp;');
+                $('<div>', {'class' : 'col-md-6'}).appendTo(this.container).html('&nbsp;');
 	}
 
 	underpin.pagecontrols.sectiontwo.prototype.unload = function(){

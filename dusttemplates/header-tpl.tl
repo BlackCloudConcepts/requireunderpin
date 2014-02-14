@@ -1,30 +1,36 @@
-<h1 class="grid_16">
-	RequireUnderpin Javascript Structured Framework - Demo
-</h1>
-<h3 class="grid_16">
-	License: (MIT) <br>© 2013 Scott Gay
-</h3>
-<a target="_blank" href="https://github.com/BlackCloudConcepts/requireunderpin" class="grid_16">
-	RequireUnderpin Javascript Structured Framework @ GitHub
-</a>
+<div class="col-md-24">
+	<h1>RequireUnderpin Javascript Structured Framework - Demo</h1>
+</div>
+<div class="col-md-24">
+	<h3>License: (MIT) <br>© 2013 Scott Gay</h3>
+</div>
+<div class="col-md-24">
+	<a target="_blank" href="https://github.com/BlackCloudConcepts/requireunderpin">
+		RequireUnderpin Javascript Structured Framework @ GitHub
+	</a>
+</div>
 <div style="height:10px;width:10px;"></div>
-<hr class="grid_16">
-<div style="font-size:10pt;font-weight:bold;" class="grid_2">
+<div class="col-md-24">
+	<hr>
+</div>
+<div style="font-size:10pt;font-weight:bold;" class="col-md-2">
 	Go To:
 </div>
-<div class="grid_2 navlink" id="mainlink">
+<div class="col-md-3 navlink" id="mainlink">
 	Main Page
 </div>
-<div class="grid_2 navlink" id="sectiononelink">
+<div class="col-md-3 navlink" id="sectiononelink">
 	Section One
 </div>
-<div class="grid_2 navlink" id="sectiontwolink">
+<div class="col-md-3 navlink" id="sectiontwolink">
 	Section Two
 </div>
-<div class="grid_3 navlink" id="infolink">
+<div class="col-md-5 navlink" id="infolink">
 	What Is Going On Here?
 </div>
-<div class="grid_3 navlink" id="sectiondatalink">
+<div class="col-md-5 navlink" id="sectiondatalink">
 	Data Access Example
 </div>
-<hr class="grid_16">
+<div class="col-md-24">
+        <hr>
+</div>

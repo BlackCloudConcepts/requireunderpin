@@ -58,8 +58,8 @@ define([
 			});
                 };
                 request.failcallback = function(data){
-                        $('<div>', {'class' : 'grid_16 error'}).appendTo(_this.container).html('An error occurred');
-                        $('<div>', {'class' : 'grid_16 error'}).appendTo(_this.container).html(' - '+data.e1);
+                        $('<div>', {'class' : 'col-md-24 error'}).appendTo(_this.container).html('An error occurred');
+                        $('<div>', {'class' : 'col-md-24 error'}).appendTo(_this.container).html(' - '+data.e1);
                 };
                 this.sendRequest(request, this.container);
 */
