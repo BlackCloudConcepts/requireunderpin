@@ -10,6 +10,7 @@ Modifications Include:
 - Require JS is added along with a more native javascript class implementation.  As part of this the lowpro dependency is removed.
 - DustJS is introduced as a templating option with the advantage of having templates which can be precompiled and cached.
 - Data models to further isolate data from controls and views.  Models also allow for data caching both at the model level and also using HTML5 localStorage.
+- Bootstrap was added as a responsive grid system removing 960 grid implementation.
 
 What RequireUnderpin really is, is a working example of a simple site using a few different commonly used libraries, along with a few more home grown constructs, that makes getting a site up and running quickly a snap. The key is that even though its fast to get going, there is a solid foundation in place for further advanced development down the road.
 
