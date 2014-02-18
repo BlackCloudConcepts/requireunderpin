@@ -19,7 +19,7 @@ define([
 	                this.parameters.container.addClass('pagecontrolhighlight');
 			this.infoModel = new underpin.models.info({
 				'container' : this.container,
-				'dataTTL' : 10
+				'dataTTL' : 20
 			});
 		}
 		this.init();
@@ -32,7 +32,12 @@ define([
 		var _this = this;
 		this.getContainer();
 		this.require_template('data-tpl');
-		infoPromise = this.infoModel.fetch();
+		// sample params (don't really exist for this api or limit data).  Just using to test model/localStorage caching
+		var fParams = {
+			'start' : 10,
+			'limit' : 11
+		};
+		infoPromise = this.infoModel.fetch(fParams); 
 		infoPromise.done(function(data){
 			dust.render('data-tpl.tl', data, function(err, out){
                                 _this.container.html(out);

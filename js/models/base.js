@@ -6,33 +6,53 @@ define([
 		// define constructor if necessary
         };
 
+	// compare if the new params to be fetched are the same as the params that are stored
+	underpin.models.base.prototype.checkParams = function(fParams, storedParams){
+		var paramsMatch = true;
+		$.each(fParams, function(fkey, fval){
+			var matchFound = false;
+			$.each(storedParams, function(skey, sval){
+				if (fkey == skey && fval == sval)
+					matchFound = true;
+			});
+			if (!matchFound)
+				paramsMatch = false;
+		});
+		return paramsMatch;
+	};
+
 	// validate and return if modelData exists and is within dataTTL
-	underpin.models.base.prototype.getModelStorage = function(modelStorageData){
+	underpin.models.base.prototype.getModelStorage = function(modelStorageData, fParams){
 		if (modelStorageData != undefined){
 			var currTime = new Date().getTime();
-                        if ((currTime - modelStorageData.time) > (this.parameters.dataTTL*1000))
+                        if ((currTime - modelStorageData.time) > (this.parameters.dataTTL*1000)) // clear if outside TTL
                                 modelStorageData = undefined;
+			if (!this.checkParams(fParams, modelStorageData.params)) // clear if params differ
+				modelStorageData = undefined;
                 }
 		return modelStorageData;
 	};
 
 	// sets model data
-	underpin.models.base.prototype.setModelStorage = function(modelStorageData){
+	underpin.models.base.prototype.setModelStorage = function(modelStorageData, fParams){
 		this.modelData = {};
                 this.modelData.time = new Date().getTime();
                 this.modelData.data = modelStorageData;
+		this.modelData.params = fParams;
 	};
 
 	// validate and return if localStorage is available in browser, exists, and is within dataTTL
-	underpin.models.base.prototype.getLocalStorage = function(modelName){
+	underpin.models.base.prototype.getLocalStorage = function(modelName, fParams){
 		var localStorageData = undefined;
                 if(typeof(Storage)!=="undefined"){ // check for browser support
                         if (localStorage.getItem(modelName) != undefined){ // check if model has been stored before
                                 // check if data is still in TTL
 				var currTime = new Date().getTime();
 				var lsd = JSON.parse(localStorage.getItem(modelName));
-                                if ((currTime - lsd.time) > (this.parameters.dataTTL*1000)){
+                                if ((currTime - lsd.time) > (this.parameters.dataTTL*1000)){ // clear if outside TTL
                                         localStorageData = undefined;
+				} else if (!this.checkParams(fParams, lsd.params)) { // clear if params differ
+	                                localStorageData = undefined;
 				} else {
 					localStorageData = lsd;
 				}
@@ -42,11 +62,12 @@ define([
 	};
 
 	// sets localStorage value if availabel in browser
-	underpin.models.base.prototype.setLocalStorage = function(modelName, localStorageData){
+	underpin.models.base.prototype.setLocalStorage = function(modelName, localStorageData, fParams){
 		if(typeof(Storage)!=="undefined"){
 			var lsd = {};
 			lsd.data = localStorageData;
 			lsd.time = new Date().getTime();
+			lsd.params = fParams;
 			localStorage.setItem(modelName, JSON.stringify(lsd));
 		}
 	};

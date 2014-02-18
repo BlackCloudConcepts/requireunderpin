@@ -27,13 +27,13 @@ define([
 
 	underpin.models.info.prototype = Object.create(Base.prototype);
 
-	underpin.models.info.prototype.fetch = function(){
+	underpin.models.info.prototype.fetch = function(fParams){
 		var _this = this;
 		var deferredObj = $.Deferred();
 		var modelName = 'modelInfo';
 
-		this.modelData = this.getModelStorage(this.modelData);
-		this.localData = this.getLocalStorage(modelName);
+		this.modelData = this.getModelStorage(this.modelData, fParams);
+		this.localData = this.getLocalStorage(modelName, fParams);
 		
 		if (this.modelData != undefined){
 //			console.log('use model data'); 
@@ -47,9 +47,10 @@ define([
 			var request = {};
 			request.action = "find";
 			request.collection = "info";
+			request.parameters = JSON.stringify(fParams);
 			request.callback = function(data){
-				_this.setModelStorage(data);
-				_this.setLocalStorage(modelName, data)
+				_this.setModelStorage(data, fParams);
+				_this.setLocalStorage(modelName, data, fParams)
 				deferredObj.resolve(data);
 			};
 			request.failcallback = function(data){
