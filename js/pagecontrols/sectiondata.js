@@ -37,7 +37,7 @@ define([
 			'start' : 10,
 			'limit' : 11
 		};
-		infoPromise = this.infoModel.fetch(fParams); 
+		var infoPromise = this.infoModel.fetch(fParams); 
 		infoPromise.done(function(data){
 			dust.render('data-tpl.tl', data, function(err, out){
                                 _this.container.html(out);
